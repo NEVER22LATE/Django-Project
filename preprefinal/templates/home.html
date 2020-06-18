@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+{% block intro %}
+    <section id="intro" class="bg-dotted-red">
+        <div class="container jumbotron text-center my-0">
+            <h1 class="display-4 san-big">Online Demo Site</h1>
+            <p>Online store tights</p>
+        </div>
+    </section>
+{% endblock intro %}
+
+{% block top-level-category %}
+    <section id="top-level-category" class="bg-dotted-red">
+        <nav class="container">
+          <ul class="nav justify-content-center">
+              <li class="nav-item">
+                <a class="nav-link" href="#!">Classic</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#!">PartyWears</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#!">Shoes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#!">Jeans</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#!">Sarees</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#!">Watches</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#!">Sandals</a>
+              </li>
+          </ul>
+        </nav>
+    </section>
+{% endblock top-level-category %}
+
+{% block shop_now %}
+    <section>
+        <div class="container my-4 py-4 text-center">
+            <h3 class="san-big text-red"><a href="/shop">Buy now</a></h3>
+        </div>
+    </section>
+{% endblock shop_now %}
+
+{% block brands %}
+    <section id="brands" >
+        <div class="container">
+            <div class="my-3">
+                <h2>Our favorite brands</h2>
+            </div>
+            
+            <div class="card-columns">
+                <div class="card brand-card">
+                    <a href="#">
+                        <img class="card-img " src="/static/images/denim.jpeg" alt="Card image">
+                        <div class="card-img-overlay">
+                            <h2 class="brand-card-text">DENIM</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="card brand-card">
+                    <a href="#">
+                        <img class="card-img " src="/static/images/puma.png" alt="Card image">
+                        <div class="card-img-overlay">
+                            <h2 class="brand-card-text">PUMA</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="card brand-card">
+                    <a href="#">
+                        <img class="card-img " src="/static/images/levis.jpg" alt="Card image">
+                        <div class="card-img-overlay">
+                            <h2 class="brand-card-text">LEVIS</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="card brand-card">
+                    <a href="#">
+                        <img class="card-img " src="/static/images/tommy.png" alt="Card image">
+                        <div class="card-img-overlay">
+                            <h2 class="brand-card-text">TOMMY</h2>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock brands %}
+
+{% block content %}
+    {% for post in object_list %}
+        <div class="post-entry">
+            <h2><a href="">{{ post.title }}</a></h2>
+            <p>{{ post.body }}</p>
+        </div>
+    {% endfor %}
+{% endblock content %}
+
+{% block product-list %}
+<section id="" class="my-3">
+    <div class="container">
+        
+        <div class="row">
+            {% for product in products %}
+                <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+                    <div class="card ">
+                        <div class="card-body">
+                            
+                            <div class="product-image small">
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img class="card-img-top"
+                                         src="
+                                            {% if product.image %}
+                                                {{ product.image.url }} 
+                                            {% else %}
+                                                /static/images/product-image.jpg
+                                            {% endif %}
+                                            " alt="{{ product.name }}
+                                            ">
+                                </a>
+                            </div>
+
+                            <div class="product-brand small mt-1">Levante</div>
+
+                            <div class="product-name font-weight-bold">
+                                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                            </div>
+
+                            <div class="product-price">₹{{ product.price }}</div>
+                            <div class="product-size text-monospace">S M L XL XXL</div>
+                            <div class="product-color d-flex justify-content-start small text-center">
+                                <div class="product-color-item bg-primary rounded-circle">B</div>
+                                <div class="product-color-item bg-info rounded-circle">I</div>
+                                <div class="product-color-item bg-danger rounded-circle">R</div>
+                            </div>
+                            <div class="product-promo small font-italic text-red">Buy 3 - get 15% discount!</div>
+                            <div class="btn-group mt-1">
+                                <button class="btn bg-red text-white">0</button>
+                                <button class="btn bg-black text-whsm">Buy</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}            
+        </div>
+        <hr/>
+    </div>
+</section>
+{% endblock product-list %}

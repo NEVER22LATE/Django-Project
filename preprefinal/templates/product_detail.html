@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="row">
+    <div id="image" class="col-md-6">
+        <img class="card-img-top" alt="{{ product.name }}" 
+        src="
+            {% if product.image %}
+                {{ product.image.url }} 
+            {% else %}
+                /static/images/product-image.jpg
+            {% endif %}
+        ">
+    </div>
+    <div id="info" class="col-md-6">
+        <h3>{{ product.name }}</h3>
+        <h6><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h6>
+
+        <div class="product-brand small mt-1">Levante</div>
+
+        <div class="product-price">₹{{ product.price }}</div>
+
+        <form action="{% url 'cart:cart_add' product.id %}" method="POST">
+                {% csrf_token %}
+                {{ cart_product_form }}
+                <input type="submit" value="Add to Cart" class="btn btn-primary">
+        </form>
+
+        <div class="product-description"><p>{{ product.description|safe|linebreaksbr }}</p></div>
+    </div>
+  </div>
+{% endblock content %}

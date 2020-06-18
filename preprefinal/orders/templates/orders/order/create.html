@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div class="card">
+        <div class="row">
+            <div class="col-md-8">
+                <h4 class="page-header">
+                    Checkout.
+                </h4>
+                <form action="." method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}<br/>
+                    <input type="submit" value="To order!" class="btn btn-primary">
+                </form>
+            </div>
+    
+            <div class="col-md-4">
+                <div class="page-header">
+                    You ordered:
+                </div>
+                <ul class="list-group">
+                    {% for item in cart %}
+                        <li class="list-group-item">
+                            {{item.quantity}}x {{ item.product.name }}
+                            <span><i class="fas fa-rupee-sign"> {{ item.total_price }}</i></span>
+                        </li>
+                    {% endfor %}
+                        <li class="list-group-item active">
+                            Total: <i class="fas fa-rupee-sign"> {{ cart.get_total_price }}</i>
+                        </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

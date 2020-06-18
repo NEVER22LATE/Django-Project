@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Basket
+{% endblock title %}
+
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Your basket
+                <span class="badge badge-pill badge-info float-right">
+                    {% with total_items=cart|length %}
+                        {% if cart|length > 0 %}
+                        Your orders:
+                            <a href="{% url 'cart:cart_detail' %}">
+                                {{ total_items }}
+                                    item
+                                {{ total_items|pluralize }},
+                                <p>₹ {{ cart.get_total_price }}</p>
+                            </a>
+                        {% else %}
+                        You have not selected anything yet
+                        {% endif %}
+                    {% endwith %}
+                </span>
+            </h2>
+            
+            <div class="">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>The photo</th>
+                            <th>Title</th>
+                            <th>Qty</th>
+                            <th>Delete</th>
+                            <th>Price</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for item in cart %}
+                            {% with product=item.product %}
+                                <tr>
+                                    <td>
+                                        <a href="{{ product.get_absolute_url }}">
+                                            <img src="
+                                                    {% if product.image %}
+                                                        {{ product.image.url }} 
+                                                    {% else %}
+                                                        /static/images/product-image.jpg
+                                                    {% endif %}
+                                                    " alt="{{ product.name }}">
+                                        </a>
+                                    </td>
+                                    
+                                    <td>{{ product.name }}</td>
+                                    
+                                    <td>
+                                        <form action="{% url 'cart:cart_add' product.id %}" method="POST">
+                                            {% csrf_token %}
+                                            {{ item.update_quantity_form.quantity }}
+                                            {{ item.update_quantity_form.update }}
+                                            <input type="submit" value="Refresh" class="btn btn-info">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'cart:cart_remove' product.id %}">Delete</a>
+                                    </td>
+                                    <td>₹{{ item.price }}</td>
+                                    <td>₹{{ item.total_price }}</td>
+                                </tr>
+                            {% endwith %}
+                        {% endfor %}
+                                <tr>
+                                    <td><b>Total:</b></td>
+                                    <td colspan="4"></td>
+                                    <td colspan="num"><b>₹{{ OrderItem.price }}</b></td>
+                                </tr>
+                    </tbody>
+                </table>
+                
+                <div>
+                    {% for message in messages%}
+                    <h3 style="background-color:rgb(248, 11, 31);"> {{message}}</h3>
+                    {% endfor %}
+                </div>
+            </div>      
+        </div>
+        
+        <div class="card-footer text-right">
+            <a href="{% url 'shop:product_list' %}" class="btn">Back to the store</a>
+            <a href="{% url 'orders:order_create' %}" class="btn btn-danger">Confirm the order</a>
+        </div>
+    </div>
+  
+{% endblock content %}

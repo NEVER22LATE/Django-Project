@@ -1,0 +1,104 @@
+body {
+    color: #334d66;
+}
+footer {
+    color: #f9f6f4;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+a:hover {
+    color: #101010;
+    text-decoration: none;
+}
+.jumbotron {
+    background-color: transparent;
+}
+.san {
+    font-family: 'Marck Script', cursive;
+    font-size: 1.2rem;
+}
+.san-big {
+    font-family: 'Marck Script', cursive;
+}
+.card-body a:hover, a {
+    text-decoration: none;
+}
+.card:hover {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+}
+.product-color-item {
+    height: 20px;
+    width: 20px;
+    margin: 1px;
+}
+/* Color selection */
+/* white smoke *-whsm */
+.bg-whsm {
+    background-color: #f9f6f4;
+}
+.text-whsm {
+    color: #f9f6f4;
+}
+
+/* black *-black */
+.bg-black {
+    background-color: #334d66;
+}
+.text-black {
+    color: #334d66;
+}
+.border-black {
+    border: 1px solid #334d66;
+}
+
+/* red *-red */
+    .bg-red {
+    background-color: #fd6d53;
+}
+.text-red {
+    color: #fd6d53;
+}
+.bg-dotted-red {
+    background: #f9f6f4;
+    background-image:
+        radial-gradient(#fd6d53 3%, transparent 0),
+        radial-gradient(#fd6d53 3%, transparent 0);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+}
+.border-red {
+    border: 1px solid #fd6d53;
+}
+
+/* white blue *-whbl */
+.bg-blsm {
+    background-color: #f4f9f9;
+}
+.text-blsm {
+    color: rgb(244, 249, 249);
+}
+/* END Color selection */
+
+img.logo {
+    height: 1.5rem;
+}
+
+/* Brand's cards for main page */
+.card-img-overlay {
+    margin-top: 60%;
+    text-align: center;
+}
+.brand-card-text {
+    background-color: rgba(244, 249, 249, 0.6);
+}
+.brand-card {
+    max-width: 320px;
+}
+
+
+.table {
+    color: inherit;

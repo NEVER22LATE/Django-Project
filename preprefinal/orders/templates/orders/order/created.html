@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+
+
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <h3 class="page-header">
+                Thanks for your order <strong>{{ order.first_name }}</strong>!
+            </h3>
+            <p>You have successfully placed an order! Our manager will contact you shortly!</p>
+            <p>Your order number: <strong>{{ order.id }}</strong></p>
+            <p>Your order of amount  {{ price }} will be delivered to <strong>{{ order.street }}</strong></p>
+            <p><strong>{{ order.house_number}}, {{ order.apartment_number}}, {{ order.city}} {{ order.postal_code}} </strong></p>
+            
+        </div>
+    </div>
+{% endblock content %}
